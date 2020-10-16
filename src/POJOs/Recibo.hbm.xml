@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Recibo" table="recibo" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="noRecibo" type="int">
+            <column name="NoRecibo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cliente" class="POJOs.Cliente" fetch="select">
+            <column name="IdCliente" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" />
+        </many-to-one>
+        <property name="monto" type="java.lang.Double">
+            <column name="Monto" precision="22" scale="0" />
+        </property>
+        <property name="imi" type="java.lang.Double">
+            <column name="IMI" precision="22" scale="0" />
+        </property>
+        <property name="ir" type="java.lang.Double">
+            <column name="IR" precision="22" scale="0" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <set name="detallerecibos" table="detallerecibo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdRecibo" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Detallerecibo" />
+        </set>
+    </class>
+</hibernate-mapping>

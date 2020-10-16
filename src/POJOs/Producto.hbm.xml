@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Producto" table="producto" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="IdProducto" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="60" not-null="true" unique="true" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <property name="regAnulado" type="java.lang.Boolean">
+            <column name="RegAnulado" />
+        </property>
+        <set name="facturas" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdProducto" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Factura" />
+        </set>
+    </class>
+</hibernate-mapping>

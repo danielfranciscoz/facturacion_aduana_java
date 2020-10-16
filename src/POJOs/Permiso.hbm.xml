@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Permiso" table="permiso" catalog="agenciaaduanera" optimistic-lock="version">
+        <composite-id name="id" class="POJOs.PermisoId">
+            <key-property name="idRol" type="int">
+                <column name="IdRol" />
+            </key-property>
+            <key-property name="idPantalla" type="int">
+                <column name="IdPantalla" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pantalla" class="POJOs.Pantalla" update="false" insert="false" fetch="select">
+            <column name="IdPantalla" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rol" class="POJOs.Rol" update="false" insert="false" fetch="select">
+            <column name="IdRol" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <property name="insertar" type="java.lang.Boolean">
+            <column name="Insertar" />
+        </property>
+        <property name="modificar" type="java.lang.Boolean">
+            <column name="Modificar" />
+        </property>
+        <property name="eliminar" type="java.lang.Boolean">
+            <column name="Eliminar" />
+        </property>
+        <property name="autorizar" type="java.lang.Boolean">
+            <column name="Autorizar" />
+        </property>
+        <property name="denegar" type="java.lang.Boolean">
+            <column name="Denegar" />
+        </property>
+        <property name="buscar" type="java.lang.Boolean">
+            <column name="Buscar" />
+        </property>
+        <property name="exportar" type="java.lang.Boolean">
+            <column name="Exportar" />
+        </property>
+        <property name="imprimir" type="java.lang.Boolean">
+            <column name="Imprimir" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <property name="regAnulado" type="java.lang.Boolean">
+            <column name="RegAnulado" />
+        </property>
+    </class>
+</hibernate-mapping>

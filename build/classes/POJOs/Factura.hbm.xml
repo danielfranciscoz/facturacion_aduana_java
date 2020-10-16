@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Factura" table="factura" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="cuentaRegistro" type="int">
+            <column name="CuentaRegistro" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="agencia" class="POJOs.Agencia" fetch="select">
+            <column name="IdAgencia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cliente" class="POJOs.Cliente" fetch="select">
+            <column name="IdCliente" />
+        </many-to-one>
+        <many-to-one name="producto" class="POJOs.Producto" fetch="select">
+            <column name="IdProducto" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserImpresion" class="POJOs.Usuario" fetch="select">
+            <column name="UserImpresion" length="20" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="200" />
+        </property>
+        <property name="tipoTransaccion" type="java.lang.Boolean">
+            <column name="TipoTransaccion" />
+        </property>
+        <property name="numeroDeclaracion" type="string">
+            <column name="NumeroDeclaracion" length="30" not-null="true" />
+        </property>
+        <property name="tipoLlegada" type="string">
+            <column name="TipoLlegada" length="10" not-null="true" />
+        </property>
+        <property name="remite" type="string">
+            <column name="Remite" length="80" />
+        </property>
+        <property name="facturaExterna" type="string">
+            <column name="FacturaExterna" length="30" not-null="true" />
+        </property>
+        <property name="valorCif" type="java.lang.Double">
+            <column name="ValorCIF" precision="22" scale="0" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="30">
+                <comment>El estado de la Factura puede ser: -Generada -Modificada -Impresa -Impresa con ND -Anulada</comment>
+            </column>
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <property name="fechaImpresion" type="timestamp">
+            <column name="FechaImpresion" length="19" />
+        </property>
+        <property name="docsAdjuntos" type="string">
+            <column name="DocsAdjuntos" length="300" />
+        </property>
+        <set name="detallerecibos" table="detallerecibo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CuentaRegistro" />
+            </key>
+            <one-to-many class="POJOs.Detallerecibo" />
+        </set>
+        <set name="notadebitos" table="notadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CuentaRegistro" />
+            </key>
+            <one-to-many class="POJOs.Notadebito" />
+        </set>
+        <one-to-one name="serviciosagencia" class="POJOs.Serviciosagencia"></one-to-one>
+    </class>
+</hibernate-mapping>

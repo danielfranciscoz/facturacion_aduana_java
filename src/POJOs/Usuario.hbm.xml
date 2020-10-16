@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Usuario" table="usuario" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="idUsuario" type="string">
+            <column name="idUsuario" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="empleado" class="POJOs.Empleado" fetch="select">
+            <column name="IdEmpleado" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="rol" class="POJOs.Rol" fetch="select">
+            <column name="IdRol" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <property name="password" type="string">
+            <column name="Password" length="200" not-null="true" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <property name="regAnulado" type="java.lang.Boolean">
+            <column name="RegAnulado" />
+        </property>
+        <set name="notadebitosForUserImpresion" table="notadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserImpresion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Notadebito" />
+        </set>
+        <set name="productosForUserModificacion" table="producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Producto" />
+        </set>
+        <set name="rolsForUserModificacion" table="rol" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Rol" />
+        </set>
+        <set name="clientesForUserCreacion" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Cliente" />
+        </set>
+        <set name="recibosForUserModificacion" table="recibo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Recibo" />
+        </set>
+        <set name="facturasForUserImpresion" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserImpresion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Factura" />
+        </set>
+        <set name="agenciasForUserModificacion" table="agencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Agencia" />
+        </set>
+        <set name="facturasForUserCreacion" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Factura" />
+        </set>
+        <set name="recibosForUserCreacion" table="recibo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Recibo" />
+        </set>
+        <set name="registrosanuladoses" table="registrosanulados" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserAnula" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Registrosanulados" />
+        </set>
+        <set name="detallenotadebitosForUserCreacion" table="detallenotadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Detallenotadebito" />
+        </set>
+        <set name="detallenotadebitosForUserModificacion" table="detallenotadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Detallenotadebito" />
+        </set>
+        <set name="empleadosForUserModificacion" table="empleado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Empleado" />
+        </set>
+        <set name="clientesForUserModificacion" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Cliente" />
+        </set>
+        <set name="permisosForUserCreacion" table="permiso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Permiso" />
+        </set>
+        <set name="facturasForUserModificacion" table="factura" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Factura" />
+        </set>
+        <set name="pantallasForUserModificacion" table="pantalla" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Pantalla" />
+        </set>
+        <set name="empleadosForUserCreacion" table="empleado" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Empleado" />
+        </set>
+        <set name="notadebitosForUserCreacion" table="notadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Notadebito" />
+        </set>
+        <set name="notadebitosForUserModificacion" table="notadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Notadebito" />
+        </set>
+        <set name="usuariosForUserCreacion" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Usuario" />
+        </set>
+        <set name="permisosForUserModificacion" table="permiso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Permiso" />
+        </set>
+        <set name="pantallasForUserCreacion" table="pantalla" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Pantalla" />
+        </set>
+        <set name="usuariosForUserModificacion" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserModificacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Usuario" />
+        </set>
+        <set name="productosForUserCreacion" table="producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Producto" />
+        </set>
+        <set name="agenciasForUserCreacion" table="agencia" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Agencia" />
+        </set>
+        <set name="rolsForUserCreacion" table="rol" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreacion" length="20" />
+            </key>
+            <one-to-many class="POJOs.Rol" />
+        </set>
+    </class>
+</hibernate-mapping>

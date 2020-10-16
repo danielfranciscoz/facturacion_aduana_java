@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Detallerecibo" table="detallerecibo" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="idDetalleRecibo" type="java.lang.Integer">
+            <column name="idDetalleRecibo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="factura" class="POJOs.Factura" fetch="select">
+            <column name="CuentaRegistro" />
+        </many-to-one>
+        <many-to-one name="notadebito" class="POJOs.Notadebito" fetch="select">
+            <column name="NotaDebito" />
+        </many-to-one>
+        <many-to-one name="recibo" class="POJOs.Recibo" fetch="select">
+            <column name="IdRecibo" not-null="true" />
+        </many-to-one>
+        <property name="monto" type="double">
+            <column name="Monto" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="userCreacion" type="string">
+            <column name="UserCreacion" length="20" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="userModificacion" type="string">
+            <column name="UserModificacion" length="20" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

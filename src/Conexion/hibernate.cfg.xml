@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/AgenciaAduanera?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">123456</property>
+    <mapping resource="POJOs/Agencia.hbm.xml"/>
+    <mapping resource="POJOs/Producto.hbm.xml"/>
+    <mapping resource="POJOs/Usuario.hbm.xml"/>
+    <mapping resource="POJOs/Notadebito.hbm.xml"/>
+    <mapping resource="POJOs/Persona.hbm.xml"/>
+    <mapping resource="POJOs/Factura.hbm.xml"/>
+    <mapping resource="POJOs/Permiso.hbm.xml"/>
+    <mapping resource="POJOs/Pantalla.hbm.xml"/>
+    <mapping resource="POJOs/Cliente.hbm.xml"/>
+    <mapping resource="POJOs/Empleado.hbm.xml"/>
+    <mapping resource="POJOs/Detallenotadebito.hbm.xml"/>
+    <mapping resource="POJOs/Recibo.hbm.xml"/>
+    <mapping resource="POJOs/Registrosanulados.hbm.xml"/>
+    <mapping resource="POJOs/Rol.hbm.xml"/>
+    <mapping resource="POJOs/Detallerecibo.hbm.xml"/>
+    <mapping resource="POJOs/Serviciosagencia.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Persona" table="persona" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="idPersona" type="java.lang.Integer">
+            <column name="IdPersona" />
+            <generator class="identity" />
+        </id>
+        <property name="primerNombre" type="string">
+            <column name="PrimerNombre" length="50" not-null="true" />
+        </property>
+        <property name="segundoNombre" type="string">
+            <column name="SegundoNombre" length="50" />
+        </property>
+        <property name="primerApellido" type="string">
+            <column name="PrimerApellido" length="50" not-null="true" />
+        </property>
+        <property name="segundoApellido" type="string">
+            <column name="SegundoApellido" length="50" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="Telefono" length="20" />
+        </property>
+        <property name="correo" type="string">
+            <column name="Correo" length="50" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="Direccion" length="150" not-null="true" />
+        </property>
+        <property name="cedula" type="string">
+            <column name="Cedula" length="20" />
+        </property>
+        <one-to-one name="empleado" class="POJOs.Empleado"></one-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Notadebito" table="notadebito" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="notaDebito" type="int">
+            <column name="NotaDebito" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="cliente" class="POJOs.Cliente" fetch="select">
+            <column name="IdCliente" />
+        </many-to-one>
+        <many-to-one name="factura" class="POJOs.Factura" fetch="select">
+            <column name="CuentaRegistro" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserImpresion" class="POJOs.Usuario" fetch="select">
+            <column name="UserImpresion" length="20" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <property name="estado" type="string">
+            <column name="Estado" length="30">
+                <comment>El estado de la Nota de Debito puede ser: -Generada -Modificada -Impresa -Anulada</comment>
+            </column>
+        </property>
+        <property name="fechaImpresion" type="timestamp">
+            <column name="FechaImpresion" length="19" />
+        </property>
+        <set name="detallenotadebitos" table="detallenotadebito" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NotaDebito" not-null="true" />
+            </key>
+            <one-to-many class="POJOs.Detallenotadebito" />
+        </set>
+        <set name="detallerecibos" table="detallerecibo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="NotaDebito" />
+            </key>
+            <one-to-many class="POJOs.Detallerecibo" />
+        </set>
+    </class>
+</hibernate-mapping>

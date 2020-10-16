@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Serviciosagencia" table="serviciosagencia" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="cuentaRegistro" type="int">
+            <column name="CuentaRegistro" />
+            <generator class="foreign">
+                <param name="property">factura</param>
+            </generator>
+        </id>
+        <one-to-one name="factura" class="POJOs.Factura" constrained="true"></one-to-one>
+        <property name="honorario" type="java.lang.Double">
+            <column name="Honorario" precision="22" scale="0" />
+        </property>
+        <property name="manejo" type="java.lang.Double">
+            <column name="Manejo" precision="22" scale="0" />
+        </property>
+        <property name="valorizacion" type="java.lang.Double">
+            <column name="Valorizacion" precision="22" scale="0" />
+        </property>
+        <property name="partidasAdicionales" type="java.lang.Double">
+            <column name="PartidasAdicionales" precision="22" scale="0" />
+        </property>
+        <property name="aplicaIva" type="java.lang.Boolean">
+            <column name="AplicaIVA" />
+        </property>
+    </class>
+</hibernate-mapping>

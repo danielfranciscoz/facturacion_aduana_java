@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="AgenciaAduanera"/>
+  <table-filter match-name="permiso"/>
+  <table-filter match-name="recibo"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="registrosanulados"/>
+  <table-filter match-name="notadebito"/>
+  <table-filter match-name="factura"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="empleado"/>
+  <table-filter match-name="agencia"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="producto"/>
+  <table-filter match-name="persona"/>
+  <table-filter match-name="serviciosagencia"/>
+  <table-filter match-name="pantalla"/>
+  <table-filter match-name="detallerecibo"/>
+  <table-filter match-name="detallenotadebito"/>
+</hibernate-reverse-engineering>

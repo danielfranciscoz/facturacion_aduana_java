@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Empleado" table="empleado" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="idEmpleado" type="int">
+            <column name="IdEmpleado" />
+            <generator class="foreign">
+                <param name="property">persona</param>
+            </generator>
+        </id>
+        <one-to-one name="persona" class="POJOs.Persona" constrained="true"></one-to-one>
+        <many-to-one name="usuarioByUserModificacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserModificacion" length="20" />
+        </many-to-one>
+        <many-to-one name="usuarioByUserCreacion" class="POJOs.Usuario" fetch="select">
+            <column name="UserCreacion" length="20" />
+        </many-to-one>
+        <property name="cargo" type="string">
+            <column name="Cargo" length="45" not-null="true" />
+        </property>
+        <property name="salario" type="double">
+            <column name="Salario" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="fechaInicio" type="date">
+            <column name="FechaInicio" length="10" not-null="true" />
+        </property>
+        <property name="fechaCreacion" type="timestamp">
+            <column name="FechaCreacion" length="19" />
+        </property>
+        <property name="fechaModificacion" type="timestamp">
+            <column name="FechaModificacion" length="19" />
+        </property>
+        <property name="regAnulado" type="java.lang.Boolean">
+            <column name="RegAnulado" />
+        </property>
+        <set name="usuarios" table="usuario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdEmpleado" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="POJOs.Usuario" />
+        </set>
+    </class>
+</hibernate-mapping>

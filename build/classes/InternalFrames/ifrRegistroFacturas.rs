@@ -1,0 +1,3 @@
+InternalFrames.ifrRegistroFacturas
+InternalFrames.ObjetoFila
+InternalFrames.NotaDebitoInterna

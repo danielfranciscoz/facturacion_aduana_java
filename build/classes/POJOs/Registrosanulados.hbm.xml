@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06-08-2018 02:18:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJOs.Registrosanulados" table="registrosanulados" catalog="agenciaaduanera" optimistic-lock="version">
+        <id name="idRegistrosAnulados" type="java.lang.Integer">
+            <column name="IdRegistrosAnulados" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="POJOs.Usuario" fetch="select">
+            <column name="UserAnula" length="20" not-null="true" />
+        </many-to-one>
+        <property name="tabla" type="string">
+            <column name="Tabla" length="50" not-null="true" />
+        </property>
+        <property name="idRegistro" type="int">
+            <column name="IdRegistro" not-null="true" />
+        </property>
+        <property name="motivo" type="string">
+            <column name="Motivo" length="1000" not-null="true" />
+        </property>
+        <property name="fechaAnula" type="timestamp">
+            <column name="FechaAnula" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
